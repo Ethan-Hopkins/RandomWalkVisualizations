@@ -41,20 +41,79 @@ class TestMethods(unittest.TestCase):
         print("test next is Walk passed")
 
     def testmovex(self):
-        w= walk(1,None,None,None,None)
+        w= walk(1)
         self.assertEqual(w.x,1)
-        w.movex(1)
+        w.move(1)
         self.assertEqual(w.x,2)
-        w.movex(-4)
+        w.move(-4)
         self.assertEqual(w.x,-2)
         print("testmovex passed")
+
+    def testmovey(self):
+        w= walk(0,1)
+        self.assertEqual(w.y,1)
+        w.move(0,1)
+        self.assertEqual(w.y,2)
+        w.move(0,-4)
+        self.assertEqual(w.y,-2)
+        print("testmovey passed")
+
+    def testmovez(self):
+        w= walk(0,0,1)
+        self.assertEqual(w.z,1)
+        w.move(0,0,1)
+        self.assertEqual(w.z,2)
+        w.move(0,0,-4)
+        self.assertEqual(w.z,-2)
+        print("testmovez passed")
+
+    def testmovea(self):
+        w= walk(0,0,0,1)
+        self.assertEqual(w.a,1)
+        w.move(0,0,0,1)
+        self.assertEqual(w.a,2)
+        w.move(0,0,0,-4)
+        self.assertEqual(w.a,-2)
+        print("testmovea passed")
+
+    def testmoveAll(self):
+        w= walk(1,1,1,1)
+        self.assertEqual(w.x,1)
+        self.assertEqual(w.y,1)
+        self.assertEqual(w.z,1)
+        self.assertEqual(w.a,1)
+        w.move(1,1,1,1)
+        self.assertEqual(w.x,2)
+        self.assertEqual(w.y,2)
+        self.assertEqual(w.z,2)
+        self.assertEqual(w.a,2)
+        w.move(-4,-4,-4,-3)
+        self.assertEqual(w.x,-2)
+        self.assertEqual(w.y,-2)
+        self.assertEqual(w.z,-2)
+        self.assertEqual(w.a,-1)
+        print("testmoveall passed")
     
     def testaddstep(self):
-        w= walk(1,None,None,None,None)
+        w= walk(1)
         self.assertIsNone(w.next)
-        w.movex(1)
+        w.move(1)
         self.assertIsNotNone(w.next)
         print("testaddStep passed")
+
+    def testChain(self):
+        w = walk(1)
+        self.assertIsNone(w.next)
+        w.move(1)
+        w.move(1)
+        w.move(1)
+        w.move(1)
+        w.move(1)
+        for i in range(5):
+            self.assertIsNotNone(w.next)
+            w = w.next
+        self.assertIsNone(w.next)
+        print("testchain passed")
 
         
 

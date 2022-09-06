@@ -1,15 +1,18 @@
 
 class walk:
-    def __init__(self,x, y, z, a, next):
+    def __init__(self,x=0, y=0, z=0, a=0, next=None):
         self.x = x
         self.y = y
         self.z = z
         self.a = a
         self.next = next
     
-    def movex(self,mv):
-        self.next = walk(self.x,self.y,self.z,self.a,None)
-        self.x +=mv
+    def move(self,mvX=0,mvY=0,mvZ=0,mvA=0):
+        self.next = self
+        self.x +=mvX
+        self.y +=mvY
+        self.z +=mvZ
+        self.a +=mvA
         
 
 def main():
