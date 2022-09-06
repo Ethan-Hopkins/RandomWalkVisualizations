@@ -110,6 +110,7 @@ class TestMethods(unittest.TestCase):
         w.move(1)
         w.move(1)
         for i in range(5):
+            print(w.next)
             self.assertIsNotNone(w.next)
             w = w.next
         self.assertIsNone(w.next)
